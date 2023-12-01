@@ -1,29 +1,17 @@
 package day01
 
 import (
-	"bufio"
-	"os"
 	"strconv"
 	"strings"
 
 	"github.com/samber/lo"
+
+	"github.com/timconinx/AoC2023/util"
 )
 
-func processFile(filename string) int {
-	result := 0
-	file, err := os.Open(filename)
-	if err != nil {
-		panic(err)
-	}
-	defer file.Close()
-	reader := bufio.NewScanner(file)
-	for reader.Scan() {
-		result += processLine(reader.Text())
-	}
-	return result
-}
+var sum int
 
-func processLine(line string) int {
+func ProcessLine(line string) {
 	words := []string{"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"}
 	chars := strings.Split(line, "")
 	word := ""
@@ -48,11 +36,11 @@ func processLine(line string) int {
 		return d, true
 	})
 	if len(digits) > 0 {
-		return digits[0]*10 + digits[len(digits)-1]
+		sum += digits[0]*10 + digits[len(digits)-1]
 	}
-	return 0
 }
 
 func Day01(name string) {
-	println(processFile("../day01/" + name + ".txt"))
+	util.ProcessFile("../day01/"+name+".txt", ProcessLine)
+	println(sum)
 }
