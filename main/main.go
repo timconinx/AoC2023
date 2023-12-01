@@ -5,5 +5,5 @@ import (
 )
 
 func main() {
-	day01.Day01()
+	day01.Day01("input")
 }
