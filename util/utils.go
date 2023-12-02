@@ -3,6 +3,7 @@ package util
 import (
 	"bufio"
 	"os"
+	"strconv"
 )
 
 func ProcessFile(filename string, processfunc func(string)) {
@@ -15,4 +16,12 @@ func ProcessFile(filename string, processfunc func(string)) {
 	for reader.Scan() {
 		processfunc(reader.Text())
 	}
+}
+
+func Atoi(s string) int {
+	i, err := strconv.Atoi(s)
+	if err != nil {
+		panic(err)
+	}
+	return i
 }

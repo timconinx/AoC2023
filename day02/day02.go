@@ -2,7 +2,6 @@ package day02
 
 import (
 	"fmt"
-	"strconv"
 	"strings"
 
 	"github.com/samber/lo"
@@ -31,15 +30,13 @@ func ProcessLine(line string) {
 		balls := strings.Split(game, ", ")
 		lo.ForEach(balls, func(ball string, _ int) {
 			parts := strings.Split(ball, " ")
-			number, err := strconv.Atoi(parts[0])
-			if err != nil {
-				panic(err)
-			}
-			if number > totalballs[parts[1]] {
+			number := util.Atoi(parts[0])
+			color := parts[1]
+			if number > totalballs[color] {
 				gamevalid = false
 			}
-			if number > gamepower[parts[1]] {
-				gamepower[parts[1]] = number
+			if number > gamepower[color] {
+				gamepower[color] = number
 			}
 		})
 	})
