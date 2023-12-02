@@ -40,7 +40,9 @@ func ProcessLine(line string) {
 	}
 }
 
-func Day01(name string) {
-	util.ProcessFile("../day01/"+name+".txt", ProcessLine)
-	println(sum)
+func Day01(name string, dorun bool) {
+	if dorun {
+		util.ProcessFile("../day01/"+name+".txt", ProcessLine)
+		println(sum)
+	}
 }
