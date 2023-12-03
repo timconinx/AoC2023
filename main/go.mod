@@ -5,6 +5,7 @@ go 1.21.4
 require (
 	github.com/timconinx/AoC2023/day01 v0.0.0-20231201162104-011b215652b7
 	github.com/timconinx/AoC2023/day02 v0.0.0-00010101000000-000000000000
+	github.com/timconinx/AoC2023/day03 v0.0.0-00010101000000-000000000000
 )
 
 require (
@@ -18,3 +19,5 @@ replace github.com/timconinx/AoC2023/util => ../util
 replace github.com/timconinx/AoC2023/day01 => ../day01
 
 replace github.com/timconinx/AoC2023/day02 => ../day02
+
+replace github.com/timconinx/AoC2023/day03 => ../day03
