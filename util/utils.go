@@ -25,3 +25,14 @@ func Atoi(s string) int {
 	}
 	return i
 }
+
+func Pow(base int, exp int) int {
+	if exp < 0 {
+		return 0
+	}
+	pow := 1
+	for i := 0; i < exp; i++ {
+		pow *= base
+	}
+	return pow
+}
