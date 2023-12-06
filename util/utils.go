@@ -3,7 +3,11 @@ package util
 import (
 	"bufio"
 	"os"
+	"regexp"
 	"strconv"
+	"strings"
+
+	"github.com/samber/lo"
 )
 
 func ProcessFile(filename string, processfunc func(string)) {
@@ -35,4 +39,15 @@ func Pow(base int, exp int) int {
 		pow *= base
 	}
 	return pow
+}
+
+func SplitIntArray(line string) []int {
+	sarray := strings.Split(line, " ")
+	return lo.Map(sarray, func(s string, _ int) int {
+		return Atoi(s)
+	})
+}
+
+func StartsWithDigit(line string) bool {
+	return regexp.MustCompile(`^\d`).MatchString(line)
 }
