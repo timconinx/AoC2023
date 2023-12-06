@@ -5,7 +5,6 @@ import (
 	"os"
 	"regexp"
 	"strconv"
-	"strings"
 
 	"github.com/samber/lo"
 )
@@ -30,19 +29,20 @@ func Atoi(s string) int {
 	return i
 }
 
-func Pow(base int, exp int) int {
+func Pow(base int, exp int) uint64 {
 	if exp < 0 {
 		return 0
 	}
-	pow := 1
+	b := uint64(base)
+	pow := uint64(1)
 	for i := 0; i < exp; i++ {
-		pow *= base
+		pow *= b
 	}
 	return pow
 }
 
 func SplitIntArray(line string) []int {
-	sarray := strings.Split(line, " ")
+	sarray := regexp.MustCompile(`\s+`).Split(line, -1)
 	return lo.Map(sarray, func(s string, _ int) int {
 		return Atoi(s)
 	})

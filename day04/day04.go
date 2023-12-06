@@ -13,7 +13,7 @@ var next []int
 
 func Scorecards(line string) {
 	scorepower := winningNumbers(line)
-	score += util.Pow(2, scorepower-1)
+	score += int(util.Pow(2, scorepower-1))
 }
 
 func NumberOfCards(line string) {
