@@ -168,7 +168,7 @@ func moveBetterWithAllTheRanges(s int, e int) int {
 				e = block[1]
 			}
 			length := e - block[0]
-			newstack = append(newstack, []int{s, s + length})
+			newstack = smartAppend(newstack, []int{s, s + length})
 			if e < block[1] {
 				stack = append(stack, []int{e + 1, block[1]})
 			}
@@ -185,6 +185,58 @@ func moveBetterWithAllTheRanges(s int, e int) int {
 		}
 	})
 	return result
+}
+
+func smartAppend(stack [][]int, block []int) [][]int {
+	resulttail := make([][]int, len(stack))
+	copy(resulttail, stack)
+	resulthead := [][]int{}
+	if len(stack) == 0 {
+		return append(stack, block)
+	}
+	for {
+		b := stack[0]
+		stack = lo.Drop(stack, 1)
+		if block[0] < b[0] {
+			if block[1] < b[0] {
+				return append(append(resulthead, block), resulttail...)
+			} else if block[1] <= b[1] {
+				return append(append(resulthead, []int{block[0], b[1]}), safetail(resulttail, 1)...)
+			} else {
+				return append(append(resulthead, block), safetail(resulttail, 1)...)
+			}
+		}
+		if block[0] >= b[0] && block[1] <= b[1] {
+			return append(resulthead, resulttail...)
+		}
+		if block[1] > b[1] {
+			if block[0] > b[1] {
+				return append(append(resulthead, resulttail...), block)
+			} else if block[0] >= b[0] {
+				return append(append(safehead(resulthead, 1), []int{b[0], block[1]}), resulttail...)
+			} else {
+				return append(append(safehead(resulthead, 1), block), resulttail...)
+			}
+		}
+		resulthead = append(resulthead, resulttail[0])
+		resulttail = resulttail[1:]
+	}
+}
+
+func safehead(arr [][]int, t int) [][]int {
+	if len(arr) > t {
+		return arr[:len(arr)-t-1]
+	} else {
+		return [][]int{}
+	}
+}
+
+func safetail(arr [][]int, t int) [][]int {
+	if len(arr) > t {
+		return arr[t:]
+	} else {
+		return [][]int{}
+	}
 }
 
 // return (destination, last in range to match)
