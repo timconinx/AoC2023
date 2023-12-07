@@ -7,6 +7,7 @@ import (
 	"github.com/timconinx/AoC2023/day04"
 	"github.com/timconinx/AoC2023/day05"
 	"github.com/timconinx/AoC2023/day06"
+	"github.com/timconinx/AoC2023/day07"
 )
 
 func main() {
@@ -15,5 +16,6 @@ func main() {
 	day03.Day03("input", false)
 	day04.Day04("input", false)
 	day05.Day05("input", false)
-	day06.Day06("input", true)
+	day06.Day06("input", false)
+	day07.Day07("input", true)
 }

@@ -9,6 +9,7 @@ require (
 	github.com/timconinx/AoC2023/day04 v0.0.0-00010101000000-000000000000
 	github.com/timconinx/AoC2023/day05 v0.0.0-00010101000000-000000000000
 	github.com/timconinx/AoC2023/day06 v0.0.0-00010101000000-000000000000
+	github.com/timconinx/AoC2023/day07 v0.0.0-00010101000000-000000000000
 )
 
 require (
@@ -30,3 +31,5 @@ replace github.com/timconinx/AoC2023/day04 => ../day04
 replace github.com/timconinx/AoC2023/day05 => ../day05
 
 replace github.com/timconinx/AoC2023/day06 => ../day06
+
+replace github.com/timconinx/AoC2023/day07 => ../day07
