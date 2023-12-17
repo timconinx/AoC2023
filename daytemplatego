@@ -1,0 +1,13 @@
+package dayxx
+
+import "github.com/timconinx/AoC2023/util"
+
+func ProcessLine(line string) {
+
+}
+
+func Dayxx(name string, dorun bool) {
+	if dorun {
+		util.ProcessFile("../dayxx/"+name+".txt", ProcessLine)
+	}
+}
