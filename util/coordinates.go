@@ -26,6 +26,10 @@ func (c Coordinate) Y() int {
 	return c.y
 }
 
+func (c Coordinate) Equals(other Coordinate) bool {
+	return c.x == other.x && c.y == other.y
+}
+
 func (c Coordinate) MDistanceTo(c2 Coordinate) int {
 	var x, y int
 	if c.x > c2.x {
