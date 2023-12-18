@@ -16,7 +16,7 @@ require (
 	github.com/timconinx/AoC2023/day11 v0.0.0-00010101000000-000000000000
 	github.com/timconinx/AoC2023/day15 v0.0.0-00010101000000-000000000000
 	github.com/timconinx/AoC2023/day16 v0.0.0-00010101000000-000000000000
-
+	github.com/timconinx/AoC2023/day18 v0.0.0-00010101000000-000000000000
 )
 
 require (
@@ -52,3 +52,5 @@ replace github.com/timconinx/AoC2023/day11 => ../day11
 replace github.com/timconinx/AoC2023/day15 => ../day15
 
 replace github.com/timconinx/AoC2023/day16 => ../day16
+
+replace github.com/timconinx/AoC2023/day18 => ../day18
