@@ -1,127 +1,53 @@
 package day18
 
 import (
-	"sort"
+	"regexp"
 	"strings"
 
-	"github.com/samber/lo"
 	. "github.com/timconinx/AoC2023/util"
 )
 
-type (
-	hole struct {
-		dug   bool
-		dir   string
-		color string
-	}
-)
-
 var curx, cury int = 1, 1
-var maxx, maxy int = -10000, -10000
-var minx, miny int = 10000, 10000
 
-var grid = make(map[Coordinate]hole)
-var xindex = make(map[int][]Coordinate)
-var yindex = make(map[int][]Coordinate)
-var laceholes = []Coordinate{NewCoordinate(1, 1)}
+var figure = []Coordinate{NewCoordinate(1, 1)}
 
 func ProcessLine(line string) {
 	parts := strings.Split(line, " ")
 	dir := parts[0]
 	length := Atoi(parts[1])
-	col := parts[2]
-	var l int
+	adapt(length, dir)
+	figure = append([]Coordinate{NewCoordinate(curx, cury)}, figure...)
+}
+
+func adapt(length int, dir string) {
 	switch dir {
-	case "U":
-		for {
-			grid[NewCoordinate(curx, cury-l)] = hole{true, dir, col}
-			l++
-			if l == length {
-				cury -= length
-				break
-			}
-		}
-	case "D":
-		for {
-			grid[NewCoordinate(curx, cury+l)] = hole{true, dir, col}
-			l++
-			if l == length {
-				cury += length
-				break
-			}
-		}
-	case "L":
-		for {
-			grid[NewCoordinate(curx-l, cury)] = hole{true, dir, col}
-			l++
-			if l == length {
-				curx -= length
-				break
-			}
-		}
-	case "R":
-		for {
-			grid[NewCoordinate(curx+l, cury)] = hole{true, dir, col}
-			l++
-			if l == length {
-				curx += length
-				break
-			}
-		}
-	}
-	if curx > maxx {
-		maxx = curx
-	}
-	if curx < minx {
-		minx = curx
-	}
-	if cury > maxy {
-		maxy = cury
-	}
-	if cury < miny {
-		miny = cury
-	}
-	laceholes = append([]Coordinate{NewCoordinate(curx, cury)}, laceholes...)
-}
-
-func IndexAll() {
-	lo.ForEach(lo.Keys(grid), func(c Coordinate, _ int) {
-		cs := yindex[c.Y()]
-		cs = append(cs, c)
-		sort.Slice(cs, func(i, j int) bool {
-			return cs[i].Y() < cs[j].Y()
-		})
-		yindex[c.Y()] = cs
-
-		cs = xindex[c.X()]
-		cs = append(cs, c)
-		sort.Slice(cs, func(i, j int) bool {
-			return cs[i].X() < cs[j].X()
-		})
-		yindex[c.X()] = cs
-	})
-}
-
-func DigFurther() {
-	for y := miny; y <= maxy; y++ {
-
+	case "U", "3":
+		cury -= length
+	case "D", "1":
+		cury += length
+	case "L", "2":
+		curx -= length
+	case "R", "0":
+		curx += length
 	}
 }
 
-func shoelaces() int {
-	var sum int
-	for i := 0; i < len(laceholes)-1; i++ {
-		sum = sum + (laceholes[i].X() * laceholes[i+1].Y()) - (laceholes[i].Y() * laceholes[i+1].X())
-	}
-	return sum / 2
+func ProcessLine2(line string) {
+	matches := regexp.MustCompile(`\(#(.+?)\)$`).FindStringSubmatch(line)
+	code := matches[1]
+	dir := string(code[5])
+	length := StringAsHex(code[0:5])
+	adapt(length, dir)
+	figure = append([]Coordinate{NewCoordinate(curx, cury)}, figure...)
 }
 
 func Day18(name string, dorun bool) {
 	if dorun {
 		ProcessFile("../day18/"+name+".txt", ProcessLine)
-		//IndexAll()
-		//DigFurther()
-		linelength := len(lo.Values(grid))
-		println(AreaOf(laceholes) + linelength/2 + 1)
+		println(AreaOf(figure) + CircumferenceOf(figure)/2 + 1)
+		figure = []Coordinate{NewCoordinate(1, 1)}
+		curx, cury = 1, 1
+		ProcessFile("../day18/"+name+".txt", ProcessLine2)
+		println(AreaOf(figure) + CircumferenceOf(figure)/2 + 1)
 	}
 }

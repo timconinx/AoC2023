@@ -101,3 +101,30 @@ func Abs(i int) int {
 		return i
 	}
 }
+
+func StringAsHex(s string) int {
+	i := -1
+	return lo.ReduceRight(strings.Split(s, ""), func(agg int, b string, _ int) int {
+		c, err := strconv.Atoi(b)
+		if err != nil {
+			switch b {
+			case "a":
+				c = 10
+			case "b":
+				c = 11
+			case "c":
+				c = 12
+			case "d":
+				c = 13
+			case "e":
+				c = 14
+			case "f":
+				c = 15
+			default:
+				panic("got character " + b)
+			}
+		}
+		i++
+		return agg + c*int(Pow(16, i))
+	}, 0)
+}
