@@ -44,3 +44,19 @@ func (c Coordinate) MDistanceTo(c2 Coordinate) int {
 	}
 	return x + y
 }
+
+func AreaOf(figure []Coordinate) int {
+	var sum int
+	for i := 0; i < len(figure)-1; i++ {
+		sum = sum + (figure[i].X() * figure[i+1].Y()) - (figure[i].Y() * figure[i+1].X())
+	}
+	return Abs(sum / 2)
+}
+
+func CircumferenceOf(figure []Coordinate) int {
+	var sum int
+	for i := 0; i < len(figure)-1; i++ {
+		sum += figure[i].MDistanceTo(figure[i+1])
+	}
+	return sum
+}

@@ -29,10 +29,10 @@ func main() {
 	day08.Day08a("input", false)
 	day08.Day08b("input", false)
 	day09.Day09("input", false)
-	day10.Day10("input", false)
+	day10.Day10("input", true)
 	day11.Day11("input", false)
 	day15.Day15("input", false)
 	day16.Day16("input", false)
 	day18.Day18("input", false)
-	day19.Day19("input", true)
+	day19.Day19("input", false)
 }

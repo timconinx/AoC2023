@@ -116,20 +116,12 @@ func shoelaces() int {
 	return sum / 2
 }
 
-func abs(i int) int {
-	if i < 0 {
-		return 0 - i
-	} else {
-		return i
-	}
-}
-
 func Day18(name string, dorun bool) {
 	if dorun {
 		ProcessFile("../day18/"+name+".txt", ProcessLine)
 		//IndexAll()
 		//DigFurther()
 		linelength := len(lo.Values(grid))
-		println(abs(shoelaces()) + linelength/2 + 1)
+		println(AreaOf(laceholes) + linelength/2 + 1)
 	}
 }

@@ -93,3 +93,11 @@ func Ggd(x int, y int) int {
 func Kgv(x int, y int) int {
 	return (x / Ggd(x, y)) * y
 }
+
+func Abs(i int) int {
+	if i < 0 {
+		return 0 - i
+	} else {
+		return i
+	}
+}
