@@ -102,6 +102,10 @@ func Abs(i int) int {
 	}
 }
 
+func Mod(a, b int) int {
+	return (a%b + b) % b
+}
+
 func StringAsHex(s string) int {
 	i := -1
 	return lo.ReduceRight(strings.Split(s, ""), func(agg int, b string, _ int) int {

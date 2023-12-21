@@ -60,3 +60,16 @@ func CircumferenceOf(figure []Coordinate) int {
 	}
 	return sum
 }
+
+func (c Coordinate) North() Coordinate {
+	return NewCoordinate(c.x, c.y-1)
+}
+func (c Coordinate) East() Coordinate {
+	return NewCoordinate(c.x+1, c.y)
+}
+func (c Coordinate) South() Coordinate {
+	return NewCoordinate(c.x, c.y+1)
+}
+func (c Coordinate) West() Coordinate {
+	return NewCoordinate(c.x-1, c.y)
+}
